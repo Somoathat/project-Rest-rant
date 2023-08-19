@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express = require('express')
 const app = express()
 
@@ -11,5 +12,10 @@ app.get('/TEF', (req, res) => {
     res.send('Hello TEF')
 })
 
-app.listen(3000)
+app.get('*', (req, res) => {
+    res.send('I didnt expect that')
+})
+
+
+app.listen(process.env.PORT)
 

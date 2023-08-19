@@ -13,7 +13,7 @@ app.get('/TEF', (req, res) => {
 })
 
 app.get('*', (req, res) => {
-    res.send('I didnt expect that')
+    res.status(404).send('<h1>404 Page</h1>')
 })
 
 

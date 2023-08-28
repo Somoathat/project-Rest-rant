@@ -22,7 +22,9 @@ app.get('/', (req, res) => {
   app.get('/new', (req, res) => {
     res.render('places/new')
   })
-  
+  app.post('/',  (req, res) => {
+    res.send('You called post places/stub')
+  })
   
 
 module.exports = app

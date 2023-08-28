@@ -23,6 +23,7 @@ app.get('/', (req, res) => {
     res.render('places/new')
   })
   app.post('/',  (req, res) => {
+    console.log (req.body)
     res.send('You called post places/stub')
   })
   

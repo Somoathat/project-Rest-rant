@@ -2,7 +2,11 @@ const app = require('express').Router()
 const places= require('../models/places.js')
 // GET /places
 app.get('/', (req, res) => {
-console.log('Im here')// app.use(bodyParser.json({extended:true}));  
+    //console.log('Im here')
+    res.render('places', {places})
+})
+
+// app.use(bodyParser.json({extended:true}));  
 //$.ajax({
 
 //     url: '/places',
@@ -45,7 +49,6 @@ app.get('/edit', (req, res) => {
         }
       })
       
-  })
   app.get('/new', (req, res) => {
     res.render('places/new')
   })
@@ -64,7 +67,7 @@ app.get('/edit', (req, res) => {
         places.push(req.body)
         res.redirect('/places')
       })
-      router.get('/:id', (req, res) => {
+      app.get('/:id', (req, res) => {
         let id = Number(req.params.id)
         if (isNaN(id)) {
           res.render('error404')
@@ -73,9 +76,23 @@ app.get('/edit', (req, res) => {
           res.render('error404')
         }
         else {
-          res.render('places/show', {place:places[id]})
+          res.render('places/show', {place:places[id], id})
         }
       })
+      app.delete('/:id', (req, res) => {
+        let id = Number(req.params.id)
+        if (isNaN(id)) {
+          res.render('error404')
+        }
+        else if (!places[id]) {
+          res.render('error404')
+        }
+        else {
+          places.splice(id,1)
+          res.redirect('/places')
+        }
+      })
+      
       
       
 

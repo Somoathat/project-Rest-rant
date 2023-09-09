@@ -7,6 +7,12 @@ function show (data) {
           <main>
             <h1>{ data.place.name }</h1>
             <h1>Rating</h1>
+            <h3>
+          Located in {data.place.city}, {data.place.state}
+             </h3>
+             <h3>
+          {data.place.showEstablished()}
+        </h3>
             <p>Not Rated</p>
             <h2>Comments</h2>
             <p>No comments</p>
@@ -21,10 +27,13 @@ function show (data) {
 
 
 
+
+
+
+
           </main>
         </Def>
     )
 }
 
 module.exports = show
-

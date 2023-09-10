@@ -36,6 +36,32 @@ function show (data) {
             <p>Not Rated</p>
             <h2>Comments</h2>
             {comments}
+            <form method="POST" action={`/places/${data.place._id}/comment`}>
+            <label for="author">Author:</label>
+    <input type="text" id="author" name="author" required/>
+    <br/>
+    <label for="content">Content:</label>
+    <textarea id="content" name="content" rows="4" required></textarea>
+    <br/>
+    <label for="stars">Star Rating:</label>
+    <select id="stars" name="stars">
+        <option value="1">1 Star</option>
+        <option value="2">2 Stars</option>
+        <option value="3">3 Stars</option>
+        <option value="4">4 Stars</option>
+        <option value="5">5 Stars</option>
+    </select>
+    <br/>
+    <label for="rant">Is this a rant?</label>
+    <input type="checkbox" id="rant" name="rant" value="yes"/>
+    <br/>
+    <input type="submit" value="Submit"/>
+
+
+
+
+            </form>
+            
             <a href={`/places/${data.id}/edit`} className="btn btn-warning"> 
   Edit
 </a>  
@@ -44,6 +70,7 @@ function show (data) {
     Delete
   </button>
 </form> 
+
 
 
 

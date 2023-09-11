@@ -2,6 +2,9 @@ const React = require('react')
 const Def = require('../default')
 
 function new_form () {
+    <h3>
+        
+    </h3>
     return (
         <Def>
           <main>

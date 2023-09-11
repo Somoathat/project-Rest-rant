@@ -7,7 +7,29 @@ function show (data) {
         No comments yet!
       </h3>
   )
+  // let ratingsAverage = 0;
+  let ratings = (
+    <h3 className="inactive">
+      Not yet rated.
+    </h3>
+  )
   if (data.place.comments.length) {
+    let sumRatings = data.place.comments.reduce((tot, c) => {
+      return tot + c.stars
+    }, 0)
+    let ratingsAverage = sumRatings / data.place.comments.length;
+    ratingsAverage = Math.round(ratingsAverage)
+
+    let stars = '';
+    for(let i =0; i < ratingsAverage; i++) {
+      stars += '⭐'
+    }
+    ratings = (
+      <h3>
+        {stars} stars
+      </h3>
+    )
+
     comments = data.place.comments.map(c => {
       return (
         <div className="border">
@@ -20,6 +42,8 @@ function show (data) {
         </div>
       )
     })
+  } else {
+    ratingsAverage = -1
   }
 
     return (
@@ -33,7 +57,17 @@ function show (data) {
              <h3>
           {data.place.showEstablished()}
         </h3>
-            <p>Not Rated</p>
+        
+         {/ ratingsAverage === -1? (
+              ratings
+            ) : (
+              <p>Average Rating: {ratingsAverage}</p>
+            )}
+          {ratings}
+         
+        
+            
+
             <h2>Comments</h2>
             {comments}
             <form method="POST" action={`/places/${data.place._id}/comment`}>
@@ -81,6 +115,6 @@ function show (data) {
           </main>
         </Def>
     )
-}
+}https://github.com/Somoathat/project-Rest-rant
 
 module.exports = show
